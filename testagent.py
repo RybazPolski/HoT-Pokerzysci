@@ -9,7 +9,7 @@ class Message(Model):
     message: str
 @observer.on_message(model=Message)
 async def handle_request(ctx: Context, sender: str, msg: Message):
-    await ctx.send("agent1qw06qla42q4vxna78ftp76d7g2j878hlvpqhkj67mdvk9g65736hzpp2vcs", Message(message=msg.message))
+    await ctx.send(sender, Message(message=msg.message))
 if __name__ == "__main__":
     print(observer.address)
     observer.run()
