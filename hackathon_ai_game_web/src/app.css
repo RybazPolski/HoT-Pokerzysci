@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@theme {
+    --color-custom_black-500: #343131;
+    --color-custom_maroon-500: #A04747;
+    --color-custom_orange-500: #D8A25E;
+    --color-custom_yellow-500: #EEDF7A;
+    --color-custom_blue-500: #00ADB5;
+    --color-custom_white-500: #EEEEEE;
+}

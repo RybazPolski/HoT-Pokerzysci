@@ -5,9 +5,16 @@
 	let { children } = $props();
 </script>
 
-<Header />
+<svelte:head>
+	<title>Control Panel</title>
+</svelte:head>
 
+<div class="bg-custom_white-500 h-[100vh]">
 
-<div>
-	{@render children()}
+	<Header />
+
+	<div>
+		{@render children()}
+	</div>
+
 </div>

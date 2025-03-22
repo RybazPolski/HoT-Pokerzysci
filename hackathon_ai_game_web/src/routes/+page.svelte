@@ -1,1 +1,7 @@
-<div>Page.svelte</div>
+<script lang="ts">
+
+</script>
+
+<div>
+
+</div>
