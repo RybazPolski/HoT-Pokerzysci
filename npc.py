@@ -35,17 +35,18 @@ async def starting_stats(ctx: Context):
     ctx.storage.set("background","")
     ctx.storage.set("friendship",50)
     ctx.storage.set("interactions",0)
-class Message(Model):
+class arrMessage(Model):
     personality: str
     background: str
-    friendship:str
-class mess(Model):
-    messsege:str
-@Adam.on_message(model=mess)
-async def statystyki_llm(ctx: Context, sender: str, msg: mess):
+    friendship: int
+class Message(Model):
+    message: str
+@Adam.on_message(model=Message)
+async def statystyki_llm(ctx: Context, sender: str, msg: Message):
+    print("wiad")
     if sender=="agent1qfjj6yve05fleykn6dp29q6pz75nra8p9gs62j2eg926gagfpyxgxvd30au":
         if msg.message=="statystyki":
-            await ctx.send("agent1qfjj6yve05fleykn6dp29q6pz75nra8p9gs62j2eg926gagfpyxgxvd30au", Message(personality=ctx.storage.get("Personality1")+" "+ctx.storage.get("Personality3")+" "+ctx.storage.get("Personality2"),background=ctx.storage.get("background"),friendship=ctx.storage.get("friendship")))
+            await ctx.send("agent1qfjj6yve05fleykn6dp29q6pz75nra8p9gs62j2eg926gagfpyxgxvd30au", arrMessage(personality=str(str(ctx.storage.get("Personality1"))+" "+str(ctx.storage.get("Personality3"))+" "+str(ctx.storage.get("Personality2"))),background=ctx.storage.get("background"),friendship=ctx.storage.get("friendship")))
         else:
             ctx.storage.set("friendshipness",max(100,((ctx.storage.get("friendshipness")*(100+ctx.storage.get("interactions")))+int(msg.message))/(101+ctx.storage.get("interactions"))))
             
