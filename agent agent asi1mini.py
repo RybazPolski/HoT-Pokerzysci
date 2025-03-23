@@ -7,10 +7,12 @@ from uagents import Agent, Context, Model
 import os
 from dotenv import load_dotenv
 
-class Message(Model):
+class arrMessage(Model):
     personality: str
     background: str
     friendship: int
+class Message(Model):
+    message: str
 class intMessage(Model):
     message: int
 class Request(Model):
@@ -85,6 +87,7 @@ async def handle_post(ctx: Context, req: Request) -> Response:
     global observer_agent_address
     await ctx.send(npc_agent_address, Message(message="statystyki"))#adres
     await ctx.send(observer_agent_address, Message(message="statystyki"))  # adres
+    time.sleep(2)   #waiting for response, would be more convenient to use the post method but whatever
 
     global NPC_stats
     global reputation
@@ -107,7 +110,7 @@ The output should have the JSON format provided below
     output = get_fun_fact(prompt)
 
     ##update friendship levelu do bazy danych
-
+    ctx.send(npc_agent_address, Message(message=str(int(output.new_friendship_level))))
     return Response(
         text=f"{output.response}",
         agent_address=ctx.agent.address,
@@ -116,14 +119,14 @@ The output should have the JSON format provided below
 
 
 #used to update the statistics of our NPC from the NPC agent to the LLM agent
-@agent.on_message(model=Message)
-async def message_handler(ctx: Context, sender: str, msg: Message):
+@agent.on_message(model=arrMessage)
+async def message_handler(ctx: Context, sender: str, msg: arrMessage):
     #ctx.logger.info(f"Received message from {sender}: {msg.message}")
     global NPC_stats
     NPC_stats = [msg.personality, msg.background, msg.friendship]
 
 @agent.on_message(model=intMessage)
-async def message_handler(ctx: Context, sender: str, msg: Message):
+async def message_handler(ctx: Context, sender: str, msg: intMessage):
     #ctx.logger.info(f"Received message from {sender}: {msg.message}")
     global reputation
     reputation = msg.message
