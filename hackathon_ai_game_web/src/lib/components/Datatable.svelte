@@ -12,11 +12,10 @@
         {/each}
     </div>
     {#each agents as agent}
-        <div class="grid grid-cols-4 gap-4">
+        <a class="grid grid-cols-4 gap-4 border-bottom border-b-[1px] border-gray-300 transition hover:bg-slate-100" href={`/${agent.id}`}>
             <div class="p-2">{agent.name}</div>
             <div class="p-2">{agent.created_at}</div>
-            <div class="p-2">{agent.status}</div>
             <div class="p-2">{agent.traits}</div>
-        </div>
+        </a>
     {/each}
 </div>

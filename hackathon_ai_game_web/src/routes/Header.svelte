@@ -4,7 +4,7 @@
 
 <header class="bg-custom_black-500 shadow-md h-20">
 	<div class="w-20">
-		<a href="/" class="flex items-center gap-4 absolute left-4 top-3">
+		<a href="/" class="flex items-center gap-4 absolute left-20 top-3">
 			<img src="{logo}" alt="Logo"
 				class="logo max-w-14"
 			>
